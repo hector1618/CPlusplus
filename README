@@ -14,14 +14,14 @@ exe11 == Give an array of size N and entries between 1 to N, find if it contains
 exe12 == Count the number of 1 in binary representation of a number
 
 
-test1 == Value of EOF
-test2 == Bit operators
-test3 == Use of const and char *
-test4 == Use of strcpy
-test6 == Use of malloc function
-test7 == Size of pointer
-test8 == Use of destructor and function
-test9 == ASCII charachters and correponding interger
+test01 == Value of EOF
+test02 == Bit operators
+test03 == Use of const and char *
+test04 == Use of strcpy
+test06 == Use of malloc function
+test07 == Size of pointer
+test08 == Use of destructor and function
+test09 == ASCII charachters and correponding interger
 test10 == Return value of printf
 test11 == Use of do-while loop
 test12 == Example of switch
@@ -35,7 +35,7 @@ test19 == What the Fuck??
 test20 == Still confused
 test21 == Working with string and pointers
 test22 == Class example of Macros.
-test23
+test23 == 
 test24 == Good example of Macros
 test25 == Input value of scanf. Read Code Twice
 test26 == int main() take only zero or two arguments.
@@ -48,10 +48,11 @@ test32 == Different way of defining struct
 test33 == Default values in CPP
 test34 == Declaration of pointers to a function
 test35 == break in switch cases
-test36
-test37
+test36 == 
+test37 ==
 test38 == Array of structures
 test39 == Pointers to multidimensional array
+
 
 POINTER  == General pointers and arithmetic of pointers
 pointer2 == Pointer to pointers. // If pointer size if 4 than its 32 bit comp. 16 for 64 bit comp
@@ -59,3 +60,6 @@ pointer3 == Void pointers
 pointer4 == Pointers to function
 pointer5 == Passing array by reference
 pointer6 == Nil Pointer
+
+
+binary_tree == Functions related to binary tree

@@ -6,7 +6,6 @@ struct node
   int a;
   node * lchild;
   node * rchild;
-  node * parent;
 };
 
 class Binary_tree
@@ -24,6 +23,8 @@ private:
     if (a > b) return a;
     return b;
   }
+  void print_paths(node * n1, int P[], int k);
+  void print_array(int P[], int k);
 public:
   node * root;
   Binary_tree();
@@ -34,7 +35,11 @@ public:
   void postorder();
   int size();
   int max_depth();
-  
+  int min_value();
+  int max_value();
+  bool has_path_sum(node * n1, int s);
+  void print_paths();
+  void mirror(node * n1);
 };
 
 Binary_tree::Binary_tree()
@@ -169,22 +174,115 @@ int Binary_tree::max_depth(node * n1)
   return 0;
 }
 
+int Binary_tree::min_value()
+{
+  node * temp, * prev;
+  temp = root;
+  prev = root;
+  while(temp)
+    {
+      prev = temp;
+      temp = temp->lchild;
+    }
+  return prev->a;
+}
+
+int Binary_tree::max_value()
+{
+  node * temp, * prev;
+  temp = prev = root;
+  while(temp)
+    {
+      prev = temp;
+      temp = temp->rchild;
+    }
+  return prev->a;
+}
+
+bool Binary_tree::has_path_sum(node * n1, int s)
+//returns true if given tree contains the path from root to leaf having sum = s
+{
+  if (s < 0) return false;
+    
+  if(n1 == NULL)
+    {
+      return (s == 0);
+    }
+  else
+    {
+      return (has_path_sum(n1->lchild, s - n1->a) || has_path_sum(n1->rchild, s - n1->a));
+    }
+}
+
+void Binary_tree::print_paths()
+{
+  int P[max_depth()]; // To store path
+  int k = 0;
+  print_paths(root, P, k);
+}
+
+void Binary_tree::print_paths(node * n1, int P[], int k)
+{
+  if(n1 == NULL) return;
+
+  if(!(n1->lchild) and !(n1->rchild))
+    {
+      P[k++] = n1->a;
+      print_array(P, k);
+    }
+  else
+    {
+      P[k++] = n1->a;
+      print_paths(n1->lchild, P, k);
+      print_paths(n1->rchild, P, k);
+    }
+}
+
+void Binary_tree::print_array(int P[], int k)
+{
+  for(int i=0; i < k; i++)
+    {
+      printf("%d ", P[i]);
+    }
+  printf("\n");
+}
+
+void Binary_tree::mirror(node * n1)
+{
+  if(n1)
+    {
+      node * temp;
+      temp = n1->lchild;
+      n1->lchild = n1->rchild;
+      n1->rchild = temp;
+      mirror(n1->lchild);
+      mirror(n1->rchild);
+    }
+}
+
 int main()
 {
   Binary_tree b;
-  b.insert(5);
-  b.insert(10);
-  b.insert(15);
-  b.insert(4);
-  b.insert(8);
-  b.insert(20);
+  int A[] = {60, 30, 18, 35, 63, 61, 79, 10, 19, 20, 21, 22, 23};
+  for(int i=0; i < sizeof(A)/sizeof(A[i]); i++)
+    {
+      b.insert(A[i]);
+    }
   b.inorder();
   printf("\n");
-  b.preorder();
+  //b.preorder();
+  //printf("\n");
+  //b.postorder();
+  //printf("\n");
+  //printf("%d\n", b.size());
+  //printf("%d\n", b.max_depth());
+  //printf("%d\n", b.min_value());
+  //printf("%d\n", b.max_value());
+  //printf("%d\n", b.has_path_sum(b.root, 125));
+  //printf("%d\n", b.has_path_sum(b.root, 184));
+  b.print_paths();
+  b.mirror(b.root);
+  b.inorder();
   printf("\n");
-  b.postorder();
-  printf("\n");
-  printf("%d\n", b.size());
-  printf("%d\n", b.max_depth());
   return 0;
 }
