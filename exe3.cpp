@@ -3,17 +3,15 @@
 
 main()
 {
-  char * p, * q;
-  char var1, var2;
+  int * p, * q;
+  int var1, var2;
   p = & var1;
   q = & var2;
-  printf("Enter the value of var1 \n");
-  scanf("%c\n", p);
-  printf("Enter the value of var2 \n");
-  scanf("%c\n", q);
+  printf("Enter the value of var1 and var2 \n");
+  scanf("%d %d", p, q);
   printf("After swapping \n");
-  q = & var1;
-  p = & var2;
-  printf("Var1 = %c\n", var1);
-  printf("Var2 = %c\n", var2);   
+  *q = var1;
+  *p = var2;
+  printf("Var1 = %d\n", var1);
+  printf("Var2 = %d\n", var2);   
 }
